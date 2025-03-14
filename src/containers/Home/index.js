@@ -44,7 +44,6 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props); 
     this.checkWallet();
   }
 
@@ -58,7 +57,6 @@ class Home extends Component {
       } else {
         this.setState({ account: JSON.parse(value) }, () => {
           this.getETHBalance();
-          console.log(this.state);
         });
       }
     } catch (error) {
@@ -72,8 +70,6 @@ class Home extends Component {
   async getETHBalance() {
     let balance = await web3.eth.getBalance(this.state.account.address);
     balance = web3.utils.fromWei(balance, 'ether');
-    console.log(`ETH Balance: ${balance}`);
-    console.log(`ETH Balance: ${Number(balance).toFixed(3)}`);
     await this.setState({ ETHBalance: Number(balance).toFixed(3) });
   }
 
@@ -129,7 +125,6 @@ class Home extends Component {
             buttonColor="#131634"
             size={70}
             renderIcon={() => <Icon name="qrcode-scan" size={30} color="#4F8EF7" />}
-            //onPress={() => this.props.navigation.navigate('QRCodeReader', { account: this.state.account, ETHBalance: this.state.ETHBalance })}
             onPress={() => alert('Still working on this feature :D')}
           />
         </View>
